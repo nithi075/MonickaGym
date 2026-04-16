@@ -1,213 +1,76 @@
 import "./Pricing.css";
 
-const Pricing = () => {
-
+export default function Pricing() {
   const plans = [
-
     {
-      name: "Monthly",
-      price: "₹1,499",
-      duration: "/month",
-      icon:"📅",
-      features: [
-        "Full Gym Access",
-        "Locker Facility",
-        "General Trainer Support",
-        "Cardio + Strength Area"
-      ]
+      name: "Starter",
+      price: 2999,
+      tagline: "For Fitness Beginners",
+      features: ["Gym Access", "General Training", "Locker Room", "Free WiFi"],
+      recommended: false,
     },
-
     {
-      name: "3 Months",
-      price: "₹3,499",
-      duration: "/quarter",
-      popular: true,
-      icon:"🔥",
-      features: [
-        "Full Gym Access",
-        "Workout Plan",
-        "Progress Tracking",
-        "Locker + Water",
-        "Fitness Assessment"
-      ]
+      name: "Elite",
+      price: 5499,
+      tagline: "Best for Transformation",
+      features: ["All Starter Features", "Personal Training (4/mo)", "Custom Diet Plan", "Group Classes"],
+      recommended: true,
     },
-
     {
-      name: "6 Months",
-      price: "₹5,999",
-      duration: "/half year",
-      icon:"💪",
-      features: [
-        "Full Gym Access",
-        "Diet Guidance",
-        "Progress Tracking",
-        "Priority Support",
-        "Locker Facility"
-      ]
+      name: "Platinum",
+      price: 9999,
+      tagline: "Ultimate Luxury Experience",
+      features: ["All Elite Features", "Unlimited PT Sessions", "Physiotherapy", "Sauna & Spa Access"],
+      recommended: false,
     },
-
-    {
-      name: "Annual",
-      price: "₹9,999",
-      duration: "/year",
-      icon:"👑",
-      features: [
-        "Unlimited Access",
-        "2 PT Sessions Monthly",
-        "Priority Support",
-        "All Amenities",
-        "Best Savings"
-      ]
-    },
-
-    {
-      name: "90 Day Transformation",
-      price: "₹7,999",
-      duration: "/program",
-      icon:"⚡",
-      features: [
-        "Custom Diet Plan",
-        "Fat Loss Training",
-        "Weekly Tracking",
-        "WhatsApp Support",
-        "Guaranteed Results Plan"
-      ]
-    },
-
-    {
-      name: "Personal Training",
-      price: "₹5,999",
-      duration: "/month",
-      icon:"🏆",
-      features: [
-        "1-on-1 Coaching",
-        "Custom Workout Plan",
-        "Nutrition Strategy",
-        "Weekly Review",
-        "Form Correction"
-      ]
-    }
-
   ];
 
-
   return (
+    <section id="pricing" className="pricing-section">
+      <div className="pricing-mesh-bg"></div>
+      
+      <div className="container">
+        <div className="pricing-header">
+          <span className="subtitle-premium">INVEST IN YOURSELF</span>
+          <h2 className="title-premium">MEMBERSHIP <span>PLANS</span></h2>
+          <p className="header-desc">No hidden fees. Choose the plan that fits your lifestyle.</p>
+        </div>
 
-    <section className="pricing-section" id="pricing">
-
-      <div className="pricing-heading">
-
-        <span className="mini-tag">
-
-          MEMBERSHIP PLANS
-
-        </span>
-
-
-        <h2>
-
-          Choose Your <span>Fitness Plan</span>
-
-        </h2>
-
-
-        <p>
-
-          Simple pricing. Powerful results.
-          Flexible membership options designed for every fitness level.
-
-        </p>
-
-      </div>
-
-
-
-      <div className="pricing-wrapper">
-
-        {plans.map((plan,index)=>(
-
-          <div
-            key={index}
-            className={`price-card ${plan.popular ? "featured" : ""}`}
-          >
-
-            {plan.popular && (
-
-              <div className="popular-badge">
-
-                MOST POPULAR
-
+        <div className="price-grid">
+          {plans.map((plan, i) => (
+            <div 
+              className={`price-card ${plan.recommended ? "is-featured" : ""}`} 
+              key={i}
+            >
+              {plan.recommended && <div className="popular-badge">MOST POPULAR</div>}
+              
+              <div className="card-head">
+                <h3 className="plan-name">{plan.name}</h3>
+                <p className="plan-tagline">{plan.tagline}</p>
+                <div className="price-value">
+                  <span className="currency">₹</span>
+                  <span className="amount">{plan.price.toLocaleString("en-IN")}</span>
+                  <span className="duration">/MO</span>
+                </div>
               </div>
 
-            )}
+              <div className="divider-line"></div>
 
+              <ul className="features-list">
+                {plan.features.map((feat, index) => (
+                  <li key={index} className="feature-item">
+                    <span className="star-icon">✦</span> {feat}
+                  </li>
+                ))}
+              </ul>
 
-            <div className="price-icon">
-
-              {plan.icon}
-
-            </div>
-
-
-            <h3>
-
-              {plan.name}
-
-            </h3>
-
-
-            <div className="price-amount">
-
-              {plan.price}
-
-              <span>
-
-                {plan.duration}
-
-              </span>
-
-            </div>
-
-
-            <ul>
-
-              {plan.features.map((item,i)=>(
-
-                <li key={i}>
-
-                  ✓ {item}
-
-                </li>
-
-              ))}
-
-            </ul>
-
-
-            <a
-              href="https://wa.me/919597762773"
-              target="_blank"
-              rel="noreferrer"
-            >
-
-              <button className="price-btn">
-
-                Join Now
-
+              <button className="pricing-btn">
+                <span>Select Plan</span>
               </button>
-
-            </a>
-
-          </div>
-
-        ))}
-
+            </div>
+          ))}
+        </div>
       </div>
-
     </section>
-
   );
-
-};
-
-export default Pricing;
+}

@@ -1,0 +1,201 @@
+.marquee-wrapper {
+  position: relative;
+  background: #d61e1e;
+  padding: 30px 0;
+  overflow: hidden;
+  /* Darker red gradient for depth */
+  background: linear-gradient(90deg, #b01818 0%, #d61e1e 50%, #b01818 100%);
+  display: flex;
+  align-items: center;
+  /* Stylish slant */
+  transform: rotate(-1.5deg) scale(1.05);
+  margin: 60px -10px; /* Overlap edges to hide rotation gap */
+  box-shadow: 0 10px 40px rgba(214, 30, 30, 0.3);
+  z-index: 5;
+}
+
+.marquee-main {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll-fast 40s linear infinite;
+  will-change: transform; /* Boosts performance */
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-left: 40px;
+}
+
+.marquee-item span {
+  font-size: clamp(3rem, 7vw, 5.5rem); /* Bigger, bolder text */
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: -1px; /* Tighter spacing for elite look */
+  transition: 0.3s ease;
+}
+
+.text-solid {
+  color: #ffffff;
+  text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5);
+}
+
+.star-icon {
+  color: #000;
+  font-size: 2rem !important;
+  opacity: 0.6;
+}
+
+/* Edge Fading Masks */
+.marquee-mask-left, .marquee-mask-right {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-mask-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(176, 24, 24, 1), transparent);
+}
+
+.marquee-mask-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(176, 24, 24, 1), transparent);
+}
+
+/* Speed Animation */
+@keyframes scroll-fast {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Interactive Hover */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item:hover span {
+  -webkit-text-stroke: 1.5px #fff;
+  color: #000;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .marquee-wrapper {
+    padding: 15px 0;
+    transform: rotate(-1deg) scale(1.02);
+  }
+  .marquee-item { gap: 20px; padding-left: 20px; }
+  .star-icon { font-size: 1.2rem !important; }
+}
+/* =========================
+   MARQUEE MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width: 768px) {
+
+  .marquee-wrapper {
+    padding: 18px 0;
+    
+    /* less tilt for mobile readability */
+    transform: rotate(-0.8deg) scale(1.01);
+
+    margin: 40px -5px;
+    box-shadow: 0 6px 25px rgba(214, 30, 30, 0.25);
+  }
+
+  .marquee-track {
+    animation: scroll-fast 28s linear infinite;
+  }
+
+  .marquee-item {
+    gap: 18px;
+    padding-left: 18px;
+  }
+
+  .marquee-item span {
+
+    /* better mobile font scale */
+    font-size: clamp(1.6rem, 8vw, 2.6rem);
+
+    letter-spacing: 0;
+    font-weight: 900;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+  }
+
+  .text-solid {
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+  }
+
+  .star-icon {
+    font-size: 1.2rem !important;
+    opacity: 0.7;
+  }
+
+  /* mask smaller for small screen */
+  .marquee-mask-left,
+  .marquee-mask-right {
+    width: 60px;
+  }
+
+}
+
+
+/* small phones */
+@media (max-width: 480px) {
+
+  .marquee-wrapper {
+
+    padding: 14px 0;
+
+    transform: rotate(-0.6deg) scale(1);
+
+    margin: 30px -5px;
+  }
+
+  .marquee-track {
+    animation-duration: 22s;
+  }
+
+  .marquee-item {
+    gap: 14px;
+    padding-left: 14px;
+  }
+
+  .marquee-item span {
+
+    font-size: 1.4rem;
+
+    -webkit-text-stroke: 0.8px rgba(255,255,255,0.5);
+  }
+
+  .star-icon {
+    font-size: 1rem !important;
+  }
+
+  .marquee-mask-left,
+  .marquee-mask-right {
+    width: 40px;
+  }
+
+}

@@ -1,98 +1,65 @@
 import "./Hero.css";
+import HeroImage from "../../assets/hero-women.jpg"; 
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="hero" id="hero">
+    <section className="hero">
+      {/* Background Decorative Elements */}
+      <div className="hero-bg-text">STRENGTH</div>
+      <div className="hero-glow-1"></div>
+      <div className="hero-glow-2"></div>
+      
+      <div className="hero-container">
+        <div className="hero-content">
+          <div className="hero-tag">
+            <span className="pulse-dot"></span> 
+            Elite Women’s Fitness
+          </div>
+          
+          <h1 className="hero-title">
+            FORGE <br />
+            <span className="text-outline">YOUR</span> <br />
+            LEGACY
+          </h1>
 
-      {/* glow background */}
-      <div className="hero-bg"></div>
+          <p className="hero-subtitle">
+            Don’t just wish for it. Work for it. Join the elite community at 
+            <span className="highlight-red"> Monicka Gym</span> and break your boundaries.
+          </p>
 
-      <div className="hero-left">
+          <div className="hero-btns">
+            <a href="#services" className="btn-primary">Start Your Journey</a>
+            <a href="#about" className="btn-secondary">
+              Our Story <span className="arrow">→</span>
+            </a>
+          </div>
 
-        <div className="hero-badge">
-          🔥 Madurai’s Elite Transformation Center
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-num">500+</span>
+              <span className="stat-label">Members</span>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <span className="stat-num">12+</span>
+              <span className="stat-label">Experts</span>
+            </div>
+          </div>
         </div>
 
-        <h1>
-          Transforming Lives <br/>
-          <span>One Rep At a Time</span>
-        </h1>
-
-        <p>
-          Join 400+ members who changed their lifestyle with expert coaching,
-          imported machines, and a motivating environment designed for real results.
-        </p>
-
-        <div className="hero-cta">
-
-          <a href="#pricing">
-            <button className="primary-btn">
-              View Membership
-            </button>
-          </a>
-
-          <a
-            href="https://wa.me/919952995203"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <button className="secondary-btn">
-              WhatsApp Trainer
-            </button>
-          </a>
-
+        <div className="hero-image-section">
+          <div className="image-wrapper">
+             <img src={HeroImage} alt="Fitness Elite" className="main-img" />
+             {/* Floating Badge */}
+             <div className="experience-badge">
+                <span className="exp-year">ESTD.</span>
+                <span className="exp-val">2018</span>
+             </div>
+          </div>
+          {/* Vertical Decoration */}
+          <div className="vertical-label">PREMIUM FITNESS</div>
         </div>
-
-        <div className="hero-stats">
-
-          <div>
-            <h2>300+</h2>
-            <span>Transformations</span>
-          </div>
-
-          <div>
-            <h2>30+</h2>
-            <span>Imported Machines</span>
-          </div>
-
-          <div>
-            <h2>4★</h2>
-            <span>Google Rating</span>
-          </div>
-
-          <div>
-            <h2>1K+</h2>
-            <span>Social Followers</span>
-          </div>
-
-        </div>
-
       </div>
-
-
-      <div className="hero-right">
-
-        <div className="hero-image-wrapper">
-
-          <img
-            src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61"
-            alt="gym training"
-          />
-
-          <div className="floating-card card-1">
-            Since 2022
-          </div>
-
-          <div className="floating-card card-2">
-            400+ Results
-          </div>
-
-        </div>
-
-      </div>
-
     </section>
   );
-};
-
-export default Hero;
+}

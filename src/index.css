@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ithu width correct-ah calculate panna help pannum */
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Side scroll-ah block panna */
+  background-color: #000; /* Website black theme-na background black-ah veinga */
+}

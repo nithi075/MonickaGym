@@ -1,88 +1,65 @@
-import "./Navbar.css";
 import { useState, useEffect } from "react";
+import "./Navbar.css";
+import LogoImg from "../../assets/logo.png"; 
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Scroll effect with throttle (performance optimization)
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    // Prevent scrolling when menu is open
-    document.body.style.overflow = !menuOpen ? "hidden" : "unset";
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-    document.body.style.overflow = "unset";
-  };
-
-  const navLinks = [
-    { name: "Results", href: "#transformations" },
-    { name: "Programs", href: "#services" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Reviews", href: "#testimonials" },
-    { name: "FAQ", href: "#faq" },
-  ];
+  // Mobile menu open-la irukum pothu background scroll-ah stop panna
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "unset";
+  }, [menuOpen]);
 
   return (
-    <nav className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
+    <nav className={`nav ${scrolled ? "nav-scrolled" : ""} ${menuOpen ? "nav-open" : ""}`}>
       <div className="nav-container">
-        {/* LOGO */}
-        <h2 className="logo" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          RAW<span>GYM</span>
-        </h2>
+        {/* LOGO SECTION */}
+        <div className="logo-box" onClick={() => { window.scrollTo(0, 0); setMenuOpen(false); }}>
+          <img src={LogoImg} alt="Monicka Gym" className="nav-logo" />
+          <h1 className="logo-text">MONICKA<span>GYM</span></h1>
+        </div>
 
-        {/* DESKTOP MENU */}
-        <ul className="links">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a href={link.href}>{link.name}</a>
-            </li>
-          ))}
-        </ul>
-
-        {/* JOIN BUTTON (Desktop) */}
-        <div className="nav-actions">
-          <a href="tel:+919597762773" className="nav-btn-link">
-            <button className="nav-btn">Join Now</button>
-          </a>
-
-          {/* MOBILE MENU ICON */}
-          <div className={`menu-toggle ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
-            <span></span>
-            <span></span>
-            <span></span>
+        {/* NAVIGATION LINKS */}
+        <div className={`nav-menu ${menuOpen ? "active" : ""}`}>
+          <ul className="nav-links">
+            {["About", "Services", "Trainers", "Pricing"].map((item) => (
+              <li key={item}>
+                <a href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>
+                  <span className="link-num">0{["About", "Services", "Trainers", "Pricing"].indexOf(item) + 1}</span>
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mobile-footer">
+            <p>Monicka Gym & Fitness, Trichy</p>
           </div>
         </div>
-      </div>
 
-      {/* MOBILE SIDEBAR */}
-      <div className={`mobile-sidebar ${menuOpen ? "show" : ""}`}>
-        <div className="mobile-links">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} onClick={closeMenu}>
-              {link.name}
-            </a>
-          ))}
-          <a href="tel:+919597762773" onClick={closeMenu}>
-            <button className="mobile-btn">Start Training</button>
+        {/* ACTIONS */}
+        <div className="nav-right">
+          <a href="#contact" className="nav-btn-premium desktop-only">
+            <span>Join the Elite</span>
           </a>
+          
+          <button 
+            className={`premium-hamburger ${menuOpen ? "active" : ""}`} 
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <div className="ham-box"><div className="ham-inner"></div></div>
+          </button>
         </div>
       </div>
-
-      {/* Overlay with blur */}
-      {menuOpen && <div className="overlay" onClick={closeMenu}></div>}
     </nav>
   );
-};
-
-export default Navbar;
+}

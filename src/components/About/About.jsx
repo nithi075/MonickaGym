@@ -1,57 +1,65 @@
 import "./About.css";
 
-const About = () => {
+export default function About() {
+  const values = [
+    { title: "Strength", desc: "Build physical & mental resilience through guided elite training." },
+    { title: "Balance", desc: "Harmonize your lifestyle, nutrition, and health seamlessly." },
+    { title: "Focus", desc: "Dedicated one-on-one training designed for your specific goals." },
+    { title: "Excellence", desc: "Only the highest standards for the women who choose to be elite." }
+  ];
+
   return (
     <section className="about" id="about">
       <div className="about-container">
         
-        {/* Left Side: Image with Floating Badge */}
         <div className="about-left">
-          <div className="image-wrapper">
-            <img 
-              src="https://images.unsplash.com/photo-1550345332-09e3ac987658" 
-              alt="About Our Gym" 
-            />
-            {/* Experience Badge */}
-            <div className="exp-badge">
-              <h3>10+</h3>
-              <p>Years Experience</p>
+          <div className="title-wrapper">
+            <span className="accent-line"></span>
+            <span className="section-subtitle">Our Philosophy</span>
+          </div>
+          
+          <h2 className="about-title">
+            Where <span>Discipline</span> <br /> 
+            Meets Desire
+          </h2>
+
+          <p className="about-description">
+            A fitness space built exclusively for women. At <strong>Monicka Gym</strong>, 
+            we don't just count reps; we make reps count. We transform confidence, 
+            empowering you to lead with strength in every aspect of life.
+          </p>
+
+          <div className="about-stats-row">
+            <div className="exp-box">
+              <span className="big-num">08+</span>
+              <span className="stat-text">Years of <br/> Mastery</span>
+            </div>
+            <div className="exp-box">
+              <span className="big-num">2k+</span>
+              <span className="stat-text">Success <br/> Stories</span>
             </div>
           </div>
         </div>
 
-        {/* Right Side: Content */}
         <div className="about-right">
-          <span className="about-subtitle">WHO WE ARE</span>
-          <h2>Get Ready To Reach Your <span className="highlight">Fitness Goals</span></h2>
-          
-          <p className="description">
-            We are dedicated to providing a high-intensity training environment 
-            with expert coaching. Our mission is to transform your lifestyle 
-            through scientifically-backed fitness programs.
-          </p>
-
-          <div className="about-features">
-            <div className="feature-item">
-              <span className="check">✔</span>
-              <p>Professional & Certified Trainers</p>
-            </div>
-            <div className="feature-item">
-              <span className="check">✔</span>
-              <p>State-of-the-Art Gym Equipment</p>
-            </div>
-            <div className="feature-item">
-              <span className="check">✔</span>
-              <p>Customized Nutrition & Workout Plans</p>
-            </div>
+          <div className="values-grid">
+            {values.map((val, index) => (
+              <div className="value-card" key={index}>
+                <div className="card-header">
+                  <span className="step-num">/0{index + 1}</span>
+                  <div className="dot-decor"></div>
+                </div>
+                <h3>{val.title}</h3>
+                <p>{val.desc}</p>
+              </div>
+            ))}
           </div>
-
-          <button className="about-btn">Start Your Journey</button>
         </div>
 
       </div>
+      
+      {/* Background Decorative Text */}
+      <div className="bg-watermark">ESTD 2018</div>
     </section>
   );
-};
-
-export default About;
+}
